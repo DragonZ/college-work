@@ -1,0 +1,14 @@
+CONNECT
+if server is full with 5 connections, reply (-1)FULL
+if server sucessfully accept, reply 1, then the client need to send the hostname to server
+
+REMOVE: if duplicate connection, reply -2
+Duplication check move to client check, before real connection, check the connection list first. 
+may need to use contains(xinu05 == xinu05.cs.purdue.edu)
+
+Peer received flag code:
+-1 -> close the connection, no feed back
+file_size (> 0) -> uploading
+
+
+everytime fd_set detect a receive request, first read sizeof(int), then read a whole buffer to get file name, then send back ok(1) to start real uploading
